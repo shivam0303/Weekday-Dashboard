@@ -1,0 +1,38 @@
+// filter.scss
+
+.filter-container {
+    margin-bottom: 20px;
+  
+    h2 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      color: #333;
+    }
+  
+    .filter-inputs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+  
+      input,
+      label {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+  
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        cursor: pointer;
+  
+        input[type='checkbox'] {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  
