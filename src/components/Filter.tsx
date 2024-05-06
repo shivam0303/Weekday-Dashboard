@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../assets/styles/components/filter.css';
 
 interface FilterProps {
-  // Define props here
+  // props here
 }
 
 const Filter: React.FC<FilterProps> = ({}) => {

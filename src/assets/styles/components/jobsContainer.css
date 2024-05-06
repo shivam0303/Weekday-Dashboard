@@ -1,0 +1,57 @@
+.jobs-container {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  margin: 40px calc(10% - 40px); 
+  gap: 20px;
+}
+
+.job-card {
+  max-width: 360px;
+  height: 100%;
+  margin: 0 20px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 5px !important;
+  border-radius: 20px !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.job-card:hover {
+  transform: scale(1.01);
+}
+
+.job-card-body {
+  flex: 1 1 0%;
+  padding: 8px 16px;
+}
+
+.job-card-title {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.job-card-detail > p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.job-card-logo > img {
+  width: 25px;
+  height: 2.5rem;
+  display: block;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .jobs-container {
+    margin: 0 20px;
+  }
+}
