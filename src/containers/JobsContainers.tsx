@@ -29,7 +29,7 @@ const JobsContainer: React.FC = () => {
       {Array.isArray(newJob) && newJob.length > 0 ? (
         newJob.map((job) => (
           <div className="job-card" key={job.jdUid}>
-            <p>Posted 10 days ago</p>
+            <p className="posted">⏳ Posted 10 days ago</p>
             <div className="job-card-body">
               <div className="job-card-title">
                 <div className="job-card-logo">
