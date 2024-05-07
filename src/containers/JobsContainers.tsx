@@ -1,52 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { fetchJobs, Job } from "../services/api";
+import React from "react";
+import { useSelector } from "react-redux";
 import "../assets/styles/components/jobsContainer.css";
 
 const JobsContainer: React.FC = () => {
-  const [jobs, setJobs] = useState<Job[]>([]);
-  const [totalCount, setTotalCount] = useState<number>(0);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [limit, setLimit] = useState<number>(10);
-  const [offset, setOffset] = useState<number>(0);
-
-  const loadJobs = async () => {
-    setIsLoading(true);
-    try {
-      const { jobs, totalCount } = await fetchJobs(limit, offset);
-      setJobs(jobs);
-      console.log(jobs);
-      setTotalCount(totalCount);
-      setOffset((prevOffset) => prevOffset + limit);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadJobs();
-  }, []); // Load jobs on component mount
-
-  const handleScroll = () => {
-    const isAtBottom =
-      window.innerHeight + window.scrollY >= document.body.offsetHeight;
-    if (isAtBottom && !isLoading && jobs.length < totalCount) {
-      loadJobs();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isLoading, jobs, totalCount]);
+  const newJob = useSelector((state:any) => state.cardData);
 
   return (
     <div className="jobs-container">
-      {jobs &&
-        jobs.map((job) => (
+      {Array.isArray(newJob) && newJob.length > 0 ? (
+        newJob.map((job) => (
           <div className="job-card" key={job.jdUid}>
             <p>Posted 10 days ago</p>
             <div className="job-card-body">
@@ -66,16 +28,14 @@ const JobsContainer: React.FC = () => {
               </p>
               <h3>About Company</h3>
               {job.jobDetailsFromCompany}
-              <h3>
-                Minimum Experience: {job.minExp}
-              </h3>
-              <div>
-                  Apply Now
-              </div>
+              <h3>Minimum Experience: {job.minExp}</h3>
+              <div>Apply Now</div>
             </div>
           </div>
-        ))}
-      {isLoading && <p>Loading...</p>}
+        ))
+      ) : (
+        <p>No jobs available</p>
+      )}
     </div>
   );
 };
